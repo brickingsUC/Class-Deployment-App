@@ -1,0 +1,10 @@
+<html>
+    <title>Catalog Items</title>
+    <b>There are {{ catalog_item_list | count }} catalog items available to you.</b>
+    <ul>
+    {% for item in catalog_item_list %}
+        <li> {{ item['name'] }}</li>
+    {% endfor %}
+    </ul>
+
+</html>

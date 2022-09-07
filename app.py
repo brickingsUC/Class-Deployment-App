@@ -14,6 +14,8 @@ def root():
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
+    if 'Authorization' in request.cookies:
+        return redirect(url_for('home'))
     if request.method == 'POST':
         token = api_token(request.form['username'], request.form['password'])
         cookie = make_response(redirect(url_for('home')))
@@ -23,7 +25,11 @@ def login():
 
 @app.route("/home")
 def home():
-    return request.cookies.get('Authorization')
+    if 'Authorization' not in request.cookies:
+        return redirect(url_for('login'))
+
+    catalog_item_list = catalog_items(request.cookies.get('Authorization'))
+    return render_template('home.html', catalog_item_list=catalog_item_list['content'])
 
 
 def api_token(username, password):
@@ -38,3 +44,15 @@ def api_token(username, password):
     headers.update({'Authorization': auth})
 
     return headers
+
+def catalog_items(cookie):
+    headers = {
+        'Accept': 'application/json',            
+        'Content-Type': 'application/json',
+        'Authorization': cookie,
+    }
+    url = 'https://sandbox02.cech.uc.edu/catalog-service/api/consumer/entitledCatalogItemViews?limit=500'
+
+    response = requests.get(url=url, headers=headers, verify='certs/sandbox02-cech-uc-edu-chain.pem').json()
+
+    return response
