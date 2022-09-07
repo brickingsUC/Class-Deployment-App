@@ -17,7 +17,7 @@ def login():
     if request.method == 'POST':
         token = api_token(request.form['username'], request.form['password'])
         cookie = make_response(redirect(url_for('home')))
-        cookie.set_cookie('Authorization', token['Authorization'])
+        cookie.set_cookie('Authorization', token['Authorization'], secure=True)
         return cookie
     return render_template('login.html')
 
