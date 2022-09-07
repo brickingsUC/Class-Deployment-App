@@ -3,15 +3,22 @@ import requests
 
 app = Flask(__name__)
 
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/")
+def root():
+    if 'Authorization' in request.cookies:
+        return redirect(url_for('home'))
+    else:
+        return redirect(url_for('login'))
+    return "<p>Hello</p>"
+
+
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         token = api_token(request.form['username'], request.form['password'])
         cookie = make_response(redirect(url_for('home')))
         cookie.set_cookie('Authorization', token['Authorization'])
         return cookie
-    if 'Authorization' in request.cookies:
-        redirect(url_for('home'))
     return render_template('login.html')
 
 @app.route("/home")
