@@ -11,8 +11,10 @@
     </head>
     <title>Catalog Items</title>
     <b>There are {{ catalog_item_list | count }} catalog items available to you.</b>
-    <div  class="container">
-    <table class="table table-hover">
+    <a class="btn btn-primary" href="/deploy" role="button">Link</a>
+    <div class=container>
+    <div  class="overflow-auto" style="height: 600px;overflow: scroll;">
+    <table class="table table-hover table-responsive">
         <thead>
             <tr>
                 <th scope="col">Course</th>
@@ -26,6 +28,7 @@
         {% endfor %}
         </tbody>
     </table>
+    </div>
     </div>
 
 </html>

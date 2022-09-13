@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Deploy Items</title>
+        <link rel="stylesheet" href="../static/src/css/bootstrap.min.css">
+        <script src="../static/src/js/bootstrap.bundle.min.js"></script>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    </head>
+    <form method="POST" enctype="multipart/form-data" action="">
+        <input type="file" id="myFile" name="uploaded-file" accept=".csv">
+        <input type="submit" value="Upload file">
+    </form>
+</html>
