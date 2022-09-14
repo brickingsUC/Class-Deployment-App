@@ -34,8 +34,8 @@ def home():
         return redirect(url_for('login'))
 
     catalog_item_list = catalog_items(request.cookies.get('Authorization'))
-    #return render_template('home.html', catalog_item_list=catalog_item_list['content'])
-    return jsonify(catalog_item_list['content'])
+    return render_template('home.html', catalog_item_list=catalog_item_list['content'])
+    #return jsonify(catalog_item_list['content'])
 @app.route("/deploy", methods=['GET', 'POST'])
 def deploy():
     if (('Authorization' not in request.cookies) or (api_token_valid(request)!= 204)):

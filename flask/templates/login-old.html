@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Login Page</title>
+        <link rel="stylesheet" href="../static/src/css/bootstrap.min.css">
+        <script src="../static/src/js/bootstrap.bundle.min.js"></script>
+        <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    </head>
+    <div class="container">
+    <form action="" method="POST">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username" value="{{ request.form.username }}">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password" value="{{ request.form.password }}">
+        </div>
+        <button type="submit" class="btn btn-primary" value="Login">Submit</button>
+      </form>
+    </div>
+</html>

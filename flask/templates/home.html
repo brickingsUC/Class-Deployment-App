@@ -5,30 +5,36 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home</title>
-        <link rel="stylesheet" href="../static/src/css/bootstrap.min.css">
-        <script src="../static/src/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="../static/src/css/bootstrap.css">
+        <script src="../static/src/js/bootstrap.bundle.js"></script>
         <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
     </head>
     <title>Catalog Items</title>
     <b>There are {{ catalog_item_list | count }} catalog items available to you.</b>
     <a class="btn btn-primary" href="/deploy" role="button">Link</a>
-    <div class=container>
-    <div  class="overflow-auto" style="height: 600px;overflow: scroll;">
-    <table class="table table-hover table-responsive">
-        <thead>
-            <tr>
-                <th scope="col">Course</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for item in catalog_item_list %}
-            <tr> 
-                <td>{{ item['name'] }}</th>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class=container-fluid style="height: 100%">
+        <div class="row" style="height:60%; overflow: auto;">
+        <div class="col">
+            <div  class="overflow-auto" style="overflow: scroll;">
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th scope="col">Course</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in catalog_item_list %}
+                        <tr> 
+                            <td>{{ item['name'] }}</th>
+                         </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col"> column 2</div>
     </div>
     </div>
+    <div class="row"></div>
 
 </html>
